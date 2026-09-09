@@ -19,6 +19,49 @@
 .brand{gap:12px}.brand-mark{display:block;width:52px;height:52px;object-fit:contain;border:0;border-radius:0;filter:drop-shadow(0 6px 14px rgba(0,0,0,.16))}.brand strong{font-size:1.08rem;letter-spacing:-.01em}.brand small{color:var(--gold-light);opacity:.88}.image-frame img{object-position:50% 36%}
 @media(max-width:560px){.brand-mark{width:44px;height:44px}.brand{gap:8px}.brand strong{font-size:.92rem}.brand small{font-size:.48rem;letter-spacing:.13em}}
 
+/* Editorial portrait hero: original photograph with non-destructive color treatment. */
+.hero-portrait{min-height:800px;min-height:max(800px,100svh);background:#15241f;display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);padding:112px 3vw 140px 5vw;gap:2.5vw;isolation:isolate}
+.hero-portrait .hero-content{grid-column:1;grid-row:1;padding:35px 0;max-width:650px}
+.hero-portrait h1{font-size:clamp(3rem,5vw,5.8rem);line-height:1.02}
+.hero-portrait .hero-content>p{max-width:480px;font-size:1.05rem}
+.hero-portrait .hero-overlay{z-index:-1;background:radial-gradient(ellipse at 0% 10%,#30483d 0%,transparent 65%)}
+.hero-portrait .hero-grain{z-index:-1}
+.hero-photo{grid-column:2;grid-row:1;position:relative;align-self:center;border-radius:160px 24px 24px 24px;overflow:hidden;border:1px solid #c7b49155;box-shadow:0 35px 80px #0004;isolation:isolate;animation:portrait-enter 1.2s var(--ease) both}
+.hero-photo img{width:100%;height:auto;aspect-ratio:675/612;object-fit:cover;filter:saturate(.8) contrast(1.04);animation:portrait-breathe 18s ease-in-out infinite alternate;transform-origin:50% 38%}
+.hero-photo:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,#10251fe6,transparent 34%),linear-gradient(110deg,#d1a86615,transparent 60%)}
+.hero-photo-caption{position:absolute;z-index:2;bottom:24px;left:26px;right:18px;display:flex;align-items:center;gap:12px;font:500 1.15rem var(--serif)}
+.hero-photo-caption small{display:block;font:400 .72rem/1.5 var(--sans);color:#e5e9e1;margin-top:5px}
+.portrait-dot{width:8px;height:8px;border-radius:50%;background:var(--gold-light);box-shadow:0 0 0 6px #d1a86625;flex-shrink:0}
+.hero-portrait .hero-proof{left:5vw;right:auto;bottom:32px;max-width:480px;background:#20362b;border-radius:16px}
+.hero-portrait .scroll-cue{left:auto;right:5vw;bottom:40px;writing-mode:horizontal-tb}
+.hero-portrait .scroll-cue i{height:1px;width:48px}
+.hero-portrait .hero-content>*{animation:portrait-enter .85s var(--ease) both}
+.hero-portrait .hero-content>h1{animation-delay:.12s}.hero-portrait .hero-content>p{animation-delay:.22s}.hero-portrait .hero-actions{animation-delay:.32s}
+@keyframes portrait-enter{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes portrait-breathe{from{transform:scale(1)}to{transform:scale(1.035)}}
+@media(max-width:900px){
+ .hero-portrait{display:flex;flex-direction:column;align-items:stretch;min-height:auto;padding:110px 24px 45px;gap:26px}
+ .hero-portrait .hero-content{padding:0;max-width:650px;width:100%;align-self:center}
+ .hero-portrait h1{font-size:clamp(3.2rem,8vw,5.2rem)}
+ .hero-portrait .hero-content>p{margin:24px 0;max-width:580px;font-size:1rem}
+ .hero-photo{order:2;width:calc(100% + 24px);max-width:760px;border-radius:100px 20px 20px 20px}
+ .hero-portrait .hero-proof{order:3;position:relative;inset:auto;max-width:650px;width:100%;align-self:center;margin:0}
+ .hero-portrait .scroll-cue{display:none}
+ .hero-photo-caption{bottom:20px;left:20px}
+}
+@media(max-width:560px){
+ .hero-portrait{padding:104px 20px 38px;gap:24px}
+ .hero-portrait h1{font-size:clamp(2.85rem,12.3vw,4rem)}
+ .hero-portrait .eyebrow{font-size:.57rem;letter-spacing:.12em;margin-bottom:22px;gap:8px}
+ .hero-portrait .eyebrow span{width:18px;flex-shrink:0}
+ .hero-portrait .hero-actions{gap:10px}
+ .hero-portrait .button-ghost{border:0;background:none;min-height:44px;backdrop-filter:none}
+ .hero-photo{border-radius:72px 18px 18px 18px}
+ .hero-photo-caption{font-size:1rem}.hero-photo-caption small{font-size:.65rem}
+ .hero-portrait .hero-proof{display:flex;padding:16px 18px}
+}
+@media(prefers-reduced-motion:reduce){.hero-photo,.hero-photo img,.hero-portrait .hero-content>*{animation:none!important;transform:none!important}}
+
 /* Floating mobile action pill */
 .mobile-pill{display:none}
 @media(max-width:900px){
