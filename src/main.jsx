@@ -53,6 +53,19 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState(0);
   const [currentSection, setCurrentSection] = useState('inicio');
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const vid = videoRef.current;
+    if (!vid) return;
+    const tryPlay = () => vid.play().catch(() => {});
+    tryPlay();
+    // iOS Safari requires a user gesture; retry on first interaction
+    const onInteraction = () => { tryPlay(); document.removeEventListener('touchstart', onInteraction); document.removeEventListener('click', onInteraction); };
+    document.addEventListener('touchstart', onInteraction, { once: true, passive: true });
+    document.addEventListener('click', onInteraction, { once: true });
+    return () => { document.removeEventListener('touchstart', onInteraction); document.removeEventListener('click', onInteraction); };
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -95,7 +108,7 @@ function App() {
 
       <main id="conteudo">
         <section className="hero" id="inicio">
-          <video className="hero-video" autoPlay muted loop playsInline poster="/public/media/hero-poster.avif">
+          <video ref={videoRef} className="hero-video" autoPlay muted loop playsInline preload="auto" poster="/public/media/hero-poster.avif">
             <source src="/public/media/hero-therapy.mp4" type="video/mp4" />
           </video>
           <div className="hero-overlay" />
